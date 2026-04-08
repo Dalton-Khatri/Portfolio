@@ -24,7 +24,7 @@ export default function Contact() {
       className="space-y-24"
     >
       <motion.div variants={item} className="max-w-2xl">
-        <h1 className="text-5xl font-extrabold text-on-surface mb-6 font-headline tracking-tight">Contact <span className="text-primary italic">Portal</span></h1>
+        <h1 className="text-5xl font-extrabold text-on-surface mb-6 font-headline tracking-tight">Contact <span className="text-primary">Portal</span></h1>
         <p className="text-lg text-on-surface-variant leading-relaxed">
           Whether you have a question about a project, a potential collaboration, or just want to discuss the future of technology, my digital door is always open.
         </p>
