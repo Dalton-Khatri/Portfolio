@@ -11,7 +11,7 @@ export default function Layout() {
     <div className="flex min-h-screen bg-background text-on-surface">
       {/* Mobile Header */}
       <header className="lg:hidden flex justify-between items-center px-6 py-4 fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
-        <span className="text-xl font-black text-on-surface tracking-tight font-headline">DK Archive</span>
+        <span className="text-xl font-black text-on-surface tracking-tight font-headline">Dalton Khatri</span>
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="text-primary p-2 hover:bg-surface-high rounded-lg transition-transform active:scale-90"
@@ -36,8 +36,10 @@ export default function Layout() {
 
       <Sidebar />
 
-      <main className="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 lg:pt-16 pb-12 overflow-x-hidden">
-        <Outlet />
+      <main className="flex-1 min-w-0 pt-24 lg:pt-16 pb-16 overflow-x-hidden">
+        <div className="max-w-6xl mx-auto px-6 lg:px-12 xl:px-16">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
