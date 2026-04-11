@@ -61,7 +61,7 @@ const educationData = [
     gpa: 'In Progress',
     logo: '/assets/KU.png',
     initials: 'KU',
-    batchPhoto: '/assets/KU_batch.jpg',      // ← add this file to /assets/
+    batchPhoto: '/assets/KU_batch.jpg',      
     side: 'right' as const,
   },
   {
@@ -71,7 +71,7 @@ const educationData = [
     gpa: '3.92 GPA',
     logo: '/assets/StLawrence.png',
     initials: 'SL',
-    batchPhoto: '/assets/StLawrence_batch.jpg', // ← add this file to /assets/
+    batchPhoto: '/assets/St_batch.jpg', 
     side: 'left' as const,
   },
   {
@@ -81,7 +81,7 @@ const educationData = [
     gpa: '3.90 GPA',
     logo: '/assets/Arunima.png',
     initials: 'AS',
-    batchPhoto: '/assets/Arunima_batch.jpg',    // ← add this file to /assets/
+    batchPhoto: '/assets/Arunima_batch.jpg',  
     side: 'right' as const,
   },
 ];
@@ -398,7 +398,7 @@ function BatchPhoto({ src, school }: { src: string; school: string }) {
       <img
         src={src}
         alt={`${school} batch`}
-        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+        className="w-full h-full object-cover  hover:grayscale-0 transition-all duration-500"
         onError={(e) => {
           const el = e.currentTarget as HTMLImageElement;
           el.parentElement!.classList.add('bg-surface-high', 'flex', 'items-center', 'justify-center');
