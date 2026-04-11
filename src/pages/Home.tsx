@@ -37,7 +37,7 @@ export default function Home() {
       </motion.p>
 
       <motion.p variants={item} className="text-xl text-on-surface-variant leading-relaxed mb-10 max-w-2xl.5">
-        Alongside my technical interests, I enjoy traveling, exploring nature, music, and playing the guitar. I'm a curious learner who's always looking to grow, try new things, and solve problems
+        Alongside my technical interests, I enjoy traveling, exploring nature, music, and playing the guitar. I'm a curious learner who's always looking to grow, try new things, and solve problems.
       </motion.p>
       
 

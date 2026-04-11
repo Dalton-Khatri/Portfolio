@@ -287,7 +287,7 @@ export default function About() {
                   <span className="px-3 py-1 bg-surface-variant text-on-surface-variant text-[10px] font-bold rounded-full uppercase tracking-widest">
                     IT Meet 2026
                   </span>
-                  <span className="ml-auto text-xs text-on-surface-variant font-mono">Recent</span>
+                  <span className="ml-auto text-xs text-on-surface-variant font-mono">Dec 22, 2025</span>
                 </div>
 
                 <h3 className="text-2xl font-extrabold text-on-surface font-headline mb-1 group-hover:text-primary transition-colors duration-300">
