@@ -119,7 +119,7 @@ export default function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-xl flex items-center justify-center p-6 lg:p-16"
+            className="fixed inset-0 z-[100] bg-background/50 backdrop-blur-md flex items-center justify-center p-6 lg:p-16"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
