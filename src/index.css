@@ -23,14 +23,53 @@
   body {
     @apply bg-background text-on-surface font-sans antialiased;
   }
+
+  /* ── LIGHT THEME ── */
+  body.light {
+    --color-background: #f5faf8;
+    --color-primary: #0a7a5a;
+    --color-primary-container: #0d9970;
+    --color-on-primary: #ffffff;
+    --color-surface-low: #edf6f2;
+    --color-surface-high: #e0efe9;
+    --color-surface-variant: #d2e8e0;
+    --color-on-surface: #0d1f1b;
+    --color-on-surface-variant: #3d5a53;
+    --color-outline-variant: rgba(10, 80, 60, 0.12);
+    --color-tertiary-container: rgba(10, 122, 90, 0.06);
+    --color-tertiary-fixed: #0a7a5a;
+  }
 }
 
 @layer components {
   .glass-effect {
     @apply bg-surface-variant/60 backdrop-blur-xl;
   }
-  
+
   .text-glow {
     text-shadow: 0 0 15px rgba(102, 232, 192, 0.3);
+  }
+
+  body.light .text-glow {
+    text-shadow: none;
+  }
+
+  /* Flatten all glow/blob/shadow effects in light mode */
+  body.light .shadow-\[0_0_20px_rgba\(102\2c 232\2c 192\2c 0\.15\)\],
+  body.light .shadow-\[0_0_12px_rgba\(102\2c 232\2c 192\2c 0\.6\)\],
+  body.light .shadow-\[0_0_20px_rgba\(102\2c 232\2c 192\2c 0\.9\)\] {
+    box-shadow: none !important;
+  }
+
+  body.light .blur-3xl {
+    display: none;
+  }
+
+  body.light .shadow-lg {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body.light .shadow-primary\/20 {
+    box-shadow: 0 2px 8px rgba(10, 122, 90, 0.15) !important;
   }
 }
