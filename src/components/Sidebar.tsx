@@ -1,29 +1,34 @@
-import { Home, Folder, User, Briefcase, Image as ImageIcon, Mail, Moon } from 'lucide-react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Home, Folder, User, Briefcase, Image as ImageIcon, Mail, Moon, Sun } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 import { Github, Instagram } from 'lucide-react';
 import { FaLinkedin } from 'react-icons/fa';
+import { useTheme } from './Layout';
 
 const navItems = [
-  { icon: Home, label: 'Home', path: '/' },
-  { icon: Folder, label: 'Projects', path: '/projects' },
-  { icon: User, label: 'About', path: '/about' },
+  { icon: Home,      label: 'Home',       path: '/' },
+  { icon: User,      label: 'About',      path: '/about' },
+  { icon: Folder,    label: 'Projects',   path: '/projects' },
   { icon: Briefcase, label: 'Experience', path: '/experience' },
-  { icon: ImageIcon, label: 'Gallery', path: '/gallery' },
-  { icon: Mail, label: 'Contact', path: '/contact' },
+  { icon: ImageIcon, label: 'Gallery',    path: '/gallery' },
+  { icon: Mail,      label: 'Contact',    path: '/contact' },
 ];
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/Dalton-Khatri', label: 'GitHub' },
-  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/dalton-khatri-856259342/', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://www.instagram.com/dalton_khatri/', label: 'Instagram' },
+  { icon: Github,     href: 'https://github.com/Dalton-Khatri',                        label: 'GitHub' },
+  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/dalton-khatri-856259342/',    label: 'LinkedIn' },
+  { icon: Instagram,  href: 'https://www.instagram.com/dalton_khatri/',                label: 'Instagram' },
 ];
 
-export default function Sidebar() {
-  const navigate = useNavigate();
+interface SidebarProps {
+  onNavClick?: () => void;
+}
+
+export default function Sidebar({ onNavClick }: SidebarProps) {
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <aside className="hidden lg:flex flex-col h-screen sticky top-0 p-6 bg-surface-low w-72 shrink-0 border-r border-outline-variant">
+    <aside className="flex flex-col h-screen sticky top-0 p-6 bg-surface-low w-72 shrink-0 border-r border-outline-variant">
 
       {/* Profile section */}
       <div className="mt-1 mb-4 flex flex-col items-center text-center">
@@ -65,6 +70,8 @@ export default function Sidebar() {
           <NavLink
             key={item.path}
             to={item.path}
+            end={item.path === '/'}
+            onClick={onNavClick}
             className={({ isActive }) =>
               cn(
                 "flex items-center gap-3 px-3 py-3 rounded-full transition-all duration-300 group text-sm",
@@ -80,11 +87,19 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Bottom */}
+      {/* Bottom — Theme toggle */}
       <div className="mt-auto pt-4 border-t border-outline-variant">
-        <button className="flex items-center gap-3 text-on-surface-variant px-3 py-2.5 mt-3 hover:text-on-surface transition-colors w-full">
-          <Moon className="w-4 h-4" />
-          <span className="text-xs font-medium">Theme</span>
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-3 text-on-surface-variant px-3 py-2.5 mt-3 hover:text-primary transition-colors w-full rounded-full hover:bg-surface-high"
+        >
+          {theme === 'dark'
+            ? <Sun className="w-4 h-4" />
+            : <Moon className="w-4 h-4" />
+          }
+          <span className="text-xs font-medium">
+            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+          </span>
         </button>
       </div>
     </aside>
