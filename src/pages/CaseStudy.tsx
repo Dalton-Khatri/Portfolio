@@ -147,7 +147,7 @@ const caseStudies: Record<string, CaseStudyData> = {
     subtitle: 'Paisa Saathi — Money Between Friends',
     tagline: 'Remove the awkwardness of tracking money between friends. Log, settle, and share with no sign-up needed.',
     category: 'Finance / Mobile App',
-    year: '2026',
+    year: '2025',
     role: 'Developer',
     team: ['Dalton Khatri'],
     tech: ['Flutter', 'Dart', 'Firebase', 'Firestore', 'pdf (dart)', 'share_plus'],
@@ -477,9 +477,11 @@ export default function CaseStudy() {
       >
         <h2 className="text-3xl font-extrabold text-on-surface font-headline">Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {data.features.map((feat) => (
+          {data.features.map((feat, index) => (
             <div key={feat.title} className="group bg-surface-low rounded-2xl border border-outline-variant hover:border-primary/30 p-6 transition-all duration-300 hover:translate-y-[-2px]">
-              <span className="text-3xl mb-4 block">{feat.emoji}</span>
+              <span className="text-3xl font-extrabold text-primary/30 group-hover:text-primary/60 font-headline mb-4 block transition-colors">
+                {String(index + 1).padStart(2, '0')}
+              </span>
               <h3 className="text-base font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">{feat.title}</h3>
               <p className="text-sm text-on-surface-variant leading-relaxed">{feat.description}</p>
             </div>
