@@ -111,25 +111,43 @@ export default function About() {
 
         {/* ── INTRO ── */}
         <motion.section variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h1 className="text-5xl font-extrabold text-on-surface mb-8 font-headline tracking-tight">
-              <span className="text-primary">Dalton Khatri</span>
-            </h1>
-            <div className="space-y-6 text-lg text-on-surface-variant leading-relaxed mb-10">
+          <div className="relative">            {/* Name block */}
+            <div className="relative mb-2">
+              <h1 className="text-6xl font-extrabold font-headline tracking-tight leading-tight">
+                <span className="text-on-surface">Dalton </span>
+                <span className="text-primary">Khatri</span>
+              </h1>
+              <p className="text-sm font-semibold text-on-surface-variant mt-2 tracking-widest uppercase">
+                Computer Engineer Student · Learner · Explorer
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-outline-variant my-7" />
+
+            {/* Bio with inline keyword highlights */}
+            <div className="space-y-4 text-base text-on-surface-variant leading-[1.85] mb-10">
               <p>
-                I’m Dalton Khatri, a Computer Engineering student at Kathmandu University, currently exploring my journey in the IT and engineering world. I enjoy building projects, trying out new technologies, and experimenting with new ideas.
+                A <span className="text-on-surface font-semibold">Computer Engineering student</span> at{' '}
+                <span className="text-primary font-semibold">Kathmandu University</span>, currently exploring
+                the IT and engineering world. Building projects, trying out new technologies, and
+                experimenting with ideas that matter.
               </p>
               <p>
-                I’m especially interested in working on solutions that can solve real-world and social problems. I like learning by doing, and I’m always exploring different stacks and approaches to improve my skills.
+                Especially drawn to solutions that tackle real-world and social problems.
+                I learn best by doing, always jumping between different stacks and approaches to keep
+                sharpening my edge.
               </p>
               <p>
-                Outside of tech, I love traveling, exploring nature, listening to music, and playing the guitar. I’m a curious learner who’s always looking to grow, try new things, and take on new challenges.
+                Outside the screen,traveler, love music and playing guitar, nature enthusiast, and a
+                relentlessly curious mind who thrives on new challenges.
               </p>
             </div>
 
             <a
               href="/assets/CV_DaltonKhatri.pdf"
-              download="CV_DaltonKhatri.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-surface-high text-on-surface px-8 py-4 rounded-xl font-bold border border-outline-variant hover:border-primary hover:text-primary transition-all group"
             >
               <Download className="w-5 h-5 group-hover:text-primary transition-colors" />
