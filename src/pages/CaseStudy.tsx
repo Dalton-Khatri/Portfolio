@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Github, Download, ChevronLeft, ChevronRight, Smartphone } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -205,25 +205,40 @@ const caseStudies: Record<string, CaseStudyData> = {
 function Slideshow({ slides, title }: { slides: string[]; title: string }) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const go = (dir: number) => {
-    setDirection(dir);
-    setCurrent(prev => (prev + dir + slides.length) % slides.length);
-  };
-
-  // Auto-advance every 3 seconds
-  useEffect(() => {
+  // Start / restart the 3-second auto-advance
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
     if (slides.length <= 1) return;
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrent(prev => (prev + 1) % slides.length);
     }, 3000);
-    return () => clearInterval(timer);
+  };
+
+  // Boot the timer on mount and clean up on unmount
+  useEffect(() => {
+    resetTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [slides.length]);
+
+  // Manual navigation — always resets the countdown
+  const go = (dir: number) => {
+    setDirection(dir);
+    setCurrent(prev => (prev + dir + slides.length) % slides.length);
+    resetTimer();
+  };
+
+  const goTo = (i: number) => {
+    setDirection(i > current ? 1 : -1);
+    setCurrent(i);
+    resetTimer();
+  };
 
   return (
     <div className="relative rounded-[2rem] overflow-hidden bg-surface-low border border-outline-variant">
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-[16/9] overflow-hidden cursor-pointer" onClick={() => go(1)}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
             key={current}
@@ -244,17 +259,17 @@ function Slideshow({ slides, title }: { slides: string[]; title: string }) {
           />
         </AnimatePresence>
 
-        {/* Nav arrows — fully transparent circles */}
+        {/* Nav arrows — stop click from bubbling to image click */}
         {slides.length > 1 && (
           <>
             <button
-              onClick={() => go(-1)}
+              onClick={(e) => { e.stopPropagation(); go(-1); }}
               className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border border-white/30 flex items-center justify-center text-white hover:border-white hover:bg-white/10 transition-all z-10"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => go(1)}
+              onClick={(e) => { e.stopPropagation(); go(1); }}
               className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border border-white/30 flex items-center justify-center text-white hover:border-white hover:bg-white/10 transition-all z-10"
             >
               <ChevronRight className="w-5 h-5" />
@@ -268,7 +283,7 @@ function Slideshow({ slides, title }: { slides: string[]; title: string }) {
             {slides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                onClick={(e) => { e.stopPropagation(); goTo(i); }}
                 className={`transition-all duration-300 rounded-full ${
                   i === current
                     ? 'w-6 h-2 bg-primary'
