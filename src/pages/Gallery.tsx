@@ -8,7 +8,7 @@ const images = [
     src: '/assets/ideapitching.jpg',
     title: '2nd Runner-Up, IDEAPITCH 2025',
     category: 'Achievement',
-    caption: 'Secured 2nd Runner-Up position at IDEAPITCH 2025. We Presented about our project E-Badapatra',
+    caption: 'Secured 2nd Runner-Up position at IDEAPITCH 2025. We presented about our project E-Badapatra',
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const images = [
     src: '/assets/amayangri_solo.jpg',
     title: 'Amayangri Treak',
     category: 'Treak',
-    caption: 'Went AmaYangri for 1st Treaking experince of my life, it was amazing experince to be in nature and see the beauty of mountains',
+    caption: 'Went AmaYangri for 1st Treaking experience of my life, it was amazing experience to be in nature and seeing the beauty of mountains',
   },
   {
     id: 4,
