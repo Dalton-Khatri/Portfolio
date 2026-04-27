@@ -203,7 +203,7 @@ const caseStudies: Record<string, CaseStudyData> = {
     id: 'riskmapper',
     title: 'RiskMapper Nepal',
     subtitle: 'Seismic Risk Dashboard for Kathmandu',
-    tagline: 'Mapping earthquake vulnerability across 32 wards of Kathmandu — real data, real routes, real-time alerts.',
+    tagline: 'Mapping earthquake vulnerability across 32 wards of Kathmandu real data, real routes and real-time alerts.',
     category: 'GIS / Web App',
     year: '2026',
     role: 'Co-Developer',
@@ -229,7 +229,7 @@ const caseStudies: Record<string, CaseStudyData> = {
       {
         number: '01',
         title: 'Data-Driven Risk Scoring',
-        description: 'Compute ward-level seismic risk from four calibrated factors — building age, material vulnerability, PGA ground shaking, and Vs30 soil amplification — weighted by 2015 earthquake damage correlation.',
+        description: 'Compute ward-level seismic risk from four calibrated factors: building age, material vulnerability, PGA ground shaking, and Vs30 soil amplification, weighted by 2015 earthquake damage correlation.',
       },
       {
         number: '02',
@@ -249,14 +249,14 @@ const caseStudies: Record<string, CaseStudyData> = {
     ],
     features: [
       { emoji: '🗺️', title: 'Interactive Risk Map', description: 'Color-coded GeoJSON ward polygons on Leaflet with real administrative boundaries, hover effects, and risk-proportional fill opacity across all 32 KMC wards.' },
-      { emoji: '🔗', title: 'BFS Cascade Simulation', description: 'Click any ward to visualize damage spreading to neighbors — staggered animation with probability-scaled circles, connecting lines, and detailed info panels.' },
+      { emoji: '🔗', title: 'BFS Cascade Simulation', description: 'Click any ward to visualize damage spreading to neighbors, staggered animation with probability-scaled circles, connecting lines, and detailed info panels.' },
       { emoji: '🛣️', title: 'OSRM Evacuation Routes', description: 'Google Maps-style blue polyline walking routes to nearest open spaces, scored by composite distance + corridor risk for the safest-fastest path.' },
       { emoji: '🔔', title: 'Push Notifications', description: 'VAPID Web Push alerts for M≥4.5 earthquakes within 500km of Kathmandu, with service worker background reception and auto-evacuation on click.' },
       { emoji: '📊', title: 'Real-Time Stats Panel', description: 'Live summary dashboard showing threat counts (2 Critical, 23 High, 7 Moderate), shelter capacity, and active ward statistics.' },
       { emoji: '📍', title: 'Personal Evacuation Finder', description: 'GPS-based nearest open space finder with turn-by-turn directions, Overpass API park queries, and 85% distance / 15% risk composite scoring.' },
     ],
     tools: ['HTML', 'CSS', 'JavaScript', 'Leaflet.js', 'Node.js', 'Express.js', 'Python', 'OSRM API', 'Overpass API', 'VAPID Web Push', 'Service Workers', 'GeoJSON', 'VS Code', 'GitHub'],
-    conclusion: `RiskMapper Nepal transforms raw seismic data into an actionable, visual decision-support tool for disaster management. By combining 260K real building records from the 2015 NPC survey with USGS ShakeMap PGA and Paudyal Vs30 soil research, the dashboard produces calibrated risk scores grounded in peer-reviewed methodology. The cascade simulation reveals how Kathmandu's dense urban fabric propagates damage between wards, while the OSRM-powered evacuation routing finds paths that are both short and safe. Every design decision — from pre-computing all 32 cascade scenarios in Python to using VAPID over Firebase — was made to keep the tool fast, free, and deployable without proprietary dependencies.`,
+    conclusion: `RiskMapper Nepal transforms raw seismic data into an actionable, visual decision-support tool for disaster management. By combining 260K real building records from the 2015 NPC survey with USGS ShakeMap PGA and Paudyal Vs30 soil research, the dashboard produces calibrated risk scores grounded in peer-reviewed methodology. The cascade simulation reveals how Kathmandu's dense urban fabric propagates damage between wards, while the OSRM-powered evacuation routing finds paths that are both short and safe. Every design decision, from pre-computing all 32 cascade scenarios in Python to using VAPID over Firebase was made to keep the tool fast, free, and deployable without proprietary dependencies.`,
   },
 };
 
