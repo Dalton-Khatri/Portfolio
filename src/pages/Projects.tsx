@@ -33,6 +33,16 @@ const projects = [
     github: 'https://github.com/Dalton-Khatri/LenDen',
     status: 'Mobile App',
   },
+  {
+    id: 'riskmapper',
+    title: 'RiskMapper Nepal',
+    category: 'GIS / Web App',
+    description: 'A web-based seismic risk dashboard for Kathmandu that visualizes earthquake vulnerability across 32 wards, simulates damage cascades via BFS, computes smart evacuation routes through OSRM, and sends real-time push notifications.',
+    image: '/assets/RiskMapper.png',
+    tech: ['Leaflet.js', 'Node.js', 'OSRM', 'Python'],
+    github: 'https://github.com/Dalton-Khatri/RiskMapper',
+    status: 'Web App',
+  },
 ];
 
 const container = {

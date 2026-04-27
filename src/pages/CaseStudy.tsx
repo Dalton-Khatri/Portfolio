@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Github, Download, ChevronLeft, ChevronRight, Smartphone } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -198,6 +198,66 @@ const caseStudies: Record<string, CaseStudyData> = {
     tools: ['Flutter 3.0+', 'Dart', 'Firebase Firestore', 'Firebase Auth', 'pdf (dart)', 'share_plus', 'image_picker', 'flutter_animate', 'google_fonts', 'Android Studio', 'VS Code'],
     conclusion: `The informal lending culture in Nepal, where "I'll pay you back" is said dozens of times a week, needed a tool this simple. By combining Flutter's UI power with Firebase's real-time capabilities, LenDen turned a frustrating social problem into a clean, shareable, always-in-your-pocket solution. Every decision, from the glassmorphism UI to the in-memory sorting strategy, was made to keep the experience fast and the codebase maintainable.`,
   },
+
+  'riskmapper': {
+    id: 'riskmapper',
+    title: 'RiskMapper Nepal',
+    subtitle: 'Seismic Risk Dashboard for Kathmandu',
+    tagline: 'Mapping earthquake vulnerability across 32 wards of Kathmandu — real data, real routes, real-time alerts.',
+    category: 'GIS / Web App',
+    year: '2026',
+    role: 'Co-Developer',
+    team: ['Abhyudaya Pokhrel', 'Dalton Khatri', 'Sahaj Wagle', 'Saksham Dallakoti'],
+    tech: ['Leaflet.js', 'Node.js', 'Express', 'OSRM', 'Python', 'VAPID Web Push'],
+    github: 'https://github.com/Dalton-Khatri/RiskMapper',
+    report: null,
+    apk: null,
+    coverImage: '/assets/risk_mapper.png',
+    slides: [
+      '/assets/Riskmapper_1.png',
+      '/assets/Riskmapper_2.png',
+      '/assets/Riskmapper_3.png',
+      '/assets/Riskmapper_4.png',
+      '/assets/Riskmapper_5.png',
+      '/assets/Riskmapper_6.png',
+      '/assets/Riskmapper_7.png',
+      '/assets/Riskmapper_8.png',
+      '/assets/Riskmapper_9.png',
+    ],
+    abstract: `Kathmandu Metropolitan City sits on an ancient lake bed where soft alluvial soil amplifies seismic waves 2–5× compared to bedrock, making it one of the most earthquake-vulnerable capitals in the world. RiskMapper Nepal is a web-based seismic risk dashboard that visualizes earthquake vulnerability across all 32 KMC wards using real data from the 2015 NPC/CBS building survey (260,601 records), USGS ShakeMap PGA values, and Paudyal Vs30 soil classification research. It computes composite risk scores, simulates how damage cascades between neighboring wards via BFS, calculates smart evacuation routes through OSRM that balance distance with corridor safety, and delivers real-time earthquake push notifications via VAPID Web Push.`,
+    objectives: [
+      {
+        number: '01',
+        title: 'Data-Driven Risk Scoring',
+        description: 'Compute ward-level seismic risk from four calibrated factors — building age, material vulnerability, PGA ground shaking, and Vs30 soil amplification — weighted by 2015 earthquake damage correlation.',
+      },
+      {
+        number: '02',
+        title: 'Cascade Simulation Engine',
+        description: 'Model how earthquake damage propagates between neighboring wards using BFS with probability decay, pre-computed for all 32 scenarios for instant O(1) browser lookup.',
+      },
+      {
+        number: '03',
+        title: 'Smart Evacuation Routing',
+        description: 'Generate road-level walking routes to safe open spaces via OSRM, scored by a composite of 40% distance and 60% corridor risk to find paths that are both short and safe.',
+      },
+      {
+        number: '04',
+        title: 'Real-Time Earthquake Alerts',
+        description: 'Deliver push notifications for significant earthquakes near Kathmandu via VAPID Web Push, with automatic evacuation routing triggered on notification interaction.',
+      },
+    ],
+    features: [
+      { emoji: '🗺️', title: 'Interactive Risk Map', description: 'Color-coded GeoJSON ward polygons on Leaflet with real administrative boundaries, hover effects, and risk-proportional fill opacity across all 32 KMC wards.' },
+      { emoji: '🔗', title: 'BFS Cascade Simulation', description: 'Click any ward to visualize damage spreading to neighbors — staggered animation with probability-scaled circles, connecting lines, and detailed info panels.' },
+      { emoji: '🛣️', title: 'OSRM Evacuation Routes', description: 'Google Maps-style blue polyline walking routes to nearest open spaces, scored by composite distance + corridor risk for the safest-fastest path.' },
+      { emoji: '🔔', title: 'Push Notifications', description: 'VAPID Web Push alerts for M≥4.5 earthquakes within 500km of Kathmandu, with service worker background reception and auto-evacuation on click.' },
+      { emoji: '📊', title: 'Real-Time Stats Panel', description: 'Live summary dashboard showing threat counts (2 Critical, 23 High, 7 Moderate), shelter capacity, and active ward statistics.' },
+      { emoji: '📍', title: 'Personal Evacuation Finder', description: 'GPS-based nearest open space finder with turn-by-turn directions, Overpass API park queries, and 85% distance / 15% risk composite scoring.' },
+    ],
+    tools: ['HTML', 'CSS', 'JavaScript', 'Leaflet.js', 'Node.js', 'Express.js', 'Python', 'OSRM API', 'Overpass API', 'VAPID Web Push', 'Service Workers', 'GeoJSON', 'VS Code', 'GitHub'],
+    conclusion: `RiskMapper Nepal transforms raw seismic data into an actionable, visual decision-support tool for disaster management. By combining 260K real building records from the 2015 NPC survey with USGS ShakeMap PGA and Paudyal Vs30 soil research, the dashboard produces calibrated risk scores grounded in peer-reviewed methodology. The cascade simulation reveals how Kathmandu's dense urban fabric propagates damage between wards, while the OSRM-powered evacuation routing finds paths that are both short and safe. Every design decision — from pre-computing all 32 cascade scenarios in Python to using VAPID over Firebase — was made to keep the tool fast, free, and deployable without proprietary dependencies.`,
+  },
 };
 
 // ─── Slideshow ────────────────────────────────────────────────────────────────
@@ -205,40 +265,20 @@ const caseStudies: Record<string, CaseStudyData> = {
 function Slideshow({ slides, title }: { slides: string[]; title: string }) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Start / restart the 3-second auto-advance
-  const resetTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (slides.length <= 1) return;
-    timerRef.current = setInterval(() => {
-      setDirection(1);
-      setCurrent(prev => (prev + 1) % slides.length);
-    }, 3000);
-  };
-
-  // Boot the timer on mount and clean up on unmount
-  useEffect(() => {
-    resetTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [slides.length]);
-
-  // Manual navigation — always resets the countdown
   const go = (dir: number) => {
     setDirection(dir);
     setCurrent(prev => (prev + dir + slides.length) % slides.length);
-    resetTimer();
   };
 
   const goTo = (i: number) => {
     setDirection(i > current ? 1 : -1);
     setCurrent(i);
-    resetTimer();
   };
 
   return (
     <div className="relative rounded-[2rem] overflow-hidden bg-surface-low border border-outline-variant">
-      <div className="relative aspect-[16/9] overflow-hidden cursor-pointer" onClick={() => go(1)}>
+      <div className="relative aspect-[16/9] overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
             key={current}

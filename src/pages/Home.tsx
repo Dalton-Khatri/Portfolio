@@ -5,9 +5,9 @@ import { Github, Instagram } from 'lucide-react';
 import { FaLinkedin } from 'react-icons/fa';
 import { useState, useRef } from 'react';
 
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
 const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 const container = {
   hidden: { opacity: 0 },
@@ -49,15 +49,15 @@ export default function Home() {
     }
   };
   return (
-    <motion.div 
+    <motion.div
       variants={container}
       initial="hidden"
       animate="show"
       className="max-w-4x1"
     >
-      
+
       <motion.h1 variants={item} className="text-5xl lg:text-7xl font-extrabold text-on-surface leading-tight mb-6 tracking-tight font-headline">
-       Hello! I'm <span className="text-primary text-glow">Dalton.</span>
+        Hello! I'm <span className="text-primary text-glow">Dalton.</span>
       </motion.h1>
 
       {/* Tagline badges */}
@@ -78,7 +78,7 @@ export default function Home() {
           <MapPin className="w-3.5 h-3.5 text-primary" /> Kathmandu, Nepal
         </span>
       </motion.div>
-      
+
 
       <motion.p variants={item} className="text-xl text-on-surface-variant leading-relaxed mb-8 max-w-2xl">
         A Computer Engineering student at <span className="text-on-surface font-semibold">Kathmandu University</span>, passionate about technology and programming.
@@ -89,18 +89,18 @@ export default function Home() {
       </motion.p>
 
       <motion.div variants={item} className="flex flex-wrap gap-4 mb-24">
-        <Link 
-        to="/about"
-        className="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_20px_rgba(102,232,192,0.3)] transition-all hover:scale-[1.02] active:scale-95"
+        <Link
+          to="/about"
+          className="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_20px_rgba(102,232,192,0.3)] transition-all hover:scale-[1.02] active:scale-95"
         >
           View More
           <ArrowRight className="w-5 h-5" />
         </Link>
         <a
-        href="/assets/CV_DaltonKhatri.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-surface-high text-on-surface px-8 py-4 rounded-xl font-bold border border-outline-variant hover:bg-surface-variant transition-colors flex items-center gap-2"
+          href="/assets/CV_DaltonKhatri.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-surface-high text-on-surface px-8 py-4 rounded-xl font-bold border border-outline-variant hover:bg-surface-variant transition-colors flex items-center gap-2"
         >
           <Download className="w-4 h-4" />
           Download CV
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <ProjectCard 
+          <ProjectCard
             title="E-Badapatra"
             tags={["C++ & Qt", "Chatbot"]}
             description="Local Government Service Finder(LGSF) aka ई-Badapatra is a Qt and C++ desktop chatbot that helps users find local government services through JSON-based intent matching."
@@ -134,7 +134,7 @@ export default function Home() {
             github="https://github.com/Dalton-Khatri/E-Badapatra"
             caseStudyId="e-badapatra"
           />
-          <ProjectCard 
+          <ProjectCard
             title="Freud"
             tags={["AI/ML", "Mobile App"]}
             description="Freud - AI-powered mental health chatbot built with Flutter, Firebase, and fine-tuned GPT-Neo 125M. Provides empathetic 24/7 support with crisis detection and 90-day privacy auto-deletion. Your safe space for mental wellness."
@@ -160,12 +160,12 @@ export default function Home() {
           <div className="p-10 flex flex-col md:flex-row gap-8 items-start">
             {/* Icon block */}
             <div className="shrink-0 w-50 h-50 rounded-2xl bg-white border border-primary/20 flex items-center justify-center">
-              <img 
-              src="/assets/KUCC.png" 
-              alt="KUCC" 
-              className="w-50 h-50 object-contain"
+              <img
+                src="/assets/KUCC.png"
+                alt="KUCC"
+                className="w-50 h-50 object-contain"
               />
-             </div>
+            </div>
 
             {/* Content */}
             <div className="flex-1">
@@ -184,8 +184,8 @@ export default function Home() {
               <p className="text-sm text-primary font-medium mb-4 uppercase tracking-widest">KUCC</p>
 
               <p className="text-on-surface-variant text-sm leading-relaxed max-w-2xl">
-                Serving as an Executive Member at KUCC, one of the most active tech communities at Kathmandu University. 
-                Contributing to organizing technical workshops, hackathons, and community events that bridge the gap between 
+                Serving as an Executive Member at KUCC, one of the most active tech communities at Kathmandu University.
+                Contributing to organizing technical workshops, hackathons, and community events that bridge the gap between
                 students and the broader tech ecosystem.
               </p>
             </div>
@@ -193,10 +193,10 @@ export default function Home() {
             {/* Arrow */}
             <div className="shrink-0 self-center hidden md:block">
               <a
-              href="https://kucc.ku.edu.np/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center"
+                href="https://kucc.ku.edu.np/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full hover:bg-surface-variant transition-colors flex items-center justify-center"
               >
                 <ChevronRight className="w-6 h-6 text-on-surface-variant group-hover:text-primary transition-colors" />
               </a>
@@ -220,7 +220,7 @@ export default function Home() {
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="flex-1">
-                  <ContactInfo 
+                  <ContactInfo
                     icon={Mail}
                     label="Email"
                     value="khatridalton1235@gmail.com"
@@ -235,12 +235,12 @@ export default function Home() {
                   {copied ? <Check className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
-              <ContactInfo 
+              <ContactInfo
                 icon={MapPin}
                 label="Location"
                 value="Bouddha 6, Kathmandu"
               />
-              <ContactInfo 
+              <ContactInfo
                 icon={Phone}
                 label="Communication"
                 value="+977 9841256096"
@@ -318,9 +318,9 @@ function ProjectCard({ title, tags, description, code, image, github, caseStudyI
   return (
     <div className="group relative bg-surface-high rounded-3xl overflow-hidden transition-all duration-500 hover:translate-y-[-8px] border border-outline-variant/50">
       <div className="aspect-video relative overflow-hidden">
-        <img 
-          src={image} 
-          alt={title} 
+        <img
+          src={image}
+          alt={title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
           referrerPolicy="no-referrer"
         />
@@ -345,14 +345,14 @@ function ProjectCard({ title, tags, description, code, image, github, caseStudyI
           >
             <ArrowRight className="w-5 h-5" />
           </button>
-          
+
           <div className="flex items-center gap-3">
             {github && (
               <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-on-surface-variant hover:text-primary transition-colors"
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-on-surface-variant hover:text-primary transition-colors"
               >
                 <Github className="w-5 h-5" />
               </a>
@@ -384,8 +384,8 @@ function ContactInfo({ icon: Icon, label, value, href }: { icon: any, label: str
 
 function SocialLink({ icon: Icon, href }: { icon: any, href: string }) {
   return (
-    <a 
-      href={href} 
+    <a
+      href={href}
       className="w-12 h-12 bg-surface-high rounded-xl flex items-center justify-center border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary hover:bg-surface-variant transition-all"
     >
       <Icon className="w-5 h-5" />
